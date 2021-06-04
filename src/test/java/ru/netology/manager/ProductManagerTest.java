@@ -37,6 +37,8 @@ public class ProductManagerTest {
         manager.add(third);
         manager.add(fourth);
     }
+
+
     @Test
     void shouldSearchByBookName() {
         Product[] returned = new Product[]{first, second, third, fourth};
@@ -46,6 +48,7 @@ public class ProductManagerTest {
         assertArrayEquals(expected, actual);
 
     }
+
     @Test
     void whenManagerIsEmpty()
     {
@@ -59,6 +62,7 @@ public class ProductManagerTest {
 
         assertArrayEquals(expected, actual);
     }
+
     @Test
     void whenManagerHaveOneProductAndSearchingNotExistsProduct()
     {
@@ -72,6 +76,7 @@ public class ProductManagerTest {
         Product[] actual = manager.searchBy("not existing title");
         assertArrayEquals(expected, actual);
     }
+
     @Test
     void whenHaveOneProductAndWeSearchIt()
     {
@@ -82,7 +87,7 @@ public class ProductManagerTest {
         doReturn(returned).when(repository).findAll();
 
         Product[] expected = new Product[]{first};
-        Product[] actual = manager.searchBy("Memoirs");
+        Product[] actual = manager.searchBy("Agami");
         assertArrayEquals(expected, actual);
     }
 
@@ -100,6 +105,7 @@ public class ProductManagerTest {
         Product[] actual = manager.searchBy("Memoirs");
         assertArrayEquals(expected, actual);
     }
+
     @Test
     void shouldSearchByBookAuthor() {
         Product[] returned = new Product[]{first, second, third, fourth};
@@ -107,6 +113,7 @@ public class ProductManagerTest {
         Product[] expected = new Product[]{first};
         Product[] actual = manager.searchBy("Agami");
         assertArrayEquals(expected, actual);
+
     }
     @Test
     void shouldSearchBySmartPhoneName() {
@@ -115,6 +122,7 @@ public class ProductManagerTest {
         Product[] expected = new Product[]{fourth};
         Product[] actual = manager.searchBy("Xiaomi");
         assertArrayEquals(expected, actual);
+
     }
     @Test
     void shouldSearchBySmartPhoneProducer() {
@@ -123,5 +131,7 @@ public class ProductManagerTest {
         Product[] expected = new Product[]{third, fourth};
         Product[] actual = manager.searchBy("China");
         assertArrayEquals(expected, actual);
+
     }
+
 }
