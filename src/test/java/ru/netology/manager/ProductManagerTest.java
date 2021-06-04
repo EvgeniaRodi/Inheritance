@@ -25,10 +25,10 @@ public class ProductManagerTest {
     @InjectMocks
     ProductManager manager;
 
-    Product first = new Book(1, "novel", 300, "Lermontov");
-    Product second = new Book(2, "poem", 200, "Pushkin");
-    Product third = new Smartphone(3, "Iphone", 55000, "China");
-    Product fourth = new Smartphone(4, "Huawei", 33000, "China");
+    Product first = new Book(1, "Novel", 500, "Agami");
+    Product second = new Book(2, "Memories", 300, "Memoirs");
+    Product third = new Smartphone(3, "Samsung", 57000, "China");
+    Product fourth = new Smartphone(4, "Xiaomi", 15000, "China");
 
     @BeforeEach
     public void SetUp() {
@@ -37,18 +37,15 @@ public class ProductManagerTest {
         manager.add(third);
         manager.add(fourth);
     }
-
-
     @Test
     void shouldSearchByBookName() {
         Product[] returned = new Product[]{first, second, third, fourth};
         doReturn(returned).when(repository).findAll();
         Product[] expected = new Product[]{second};
-        Product[] actual = manager.searchBy("poem");
+        Product[] actual = manager.searchBy("Memories");
         assertArrayEquals(expected, actual);
 
     }
-
     @Test
     void whenManagerIsEmpty()
     {
@@ -62,7 +59,6 @@ public class ProductManagerTest {
 
         assertArrayEquals(expected, actual);
     }
-
     @Test
     void whenManagerHaveOneProductAndSearchingNotExistsProduct()
     {
@@ -76,7 +72,6 @@ public class ProductManagerTest {
         Product[] actual = manager.searchBy("not existing title");
         assertArrayEquals(expected, actual);
     }
-
     @Test
     void whenHaveOneProductAndWeSearchIt()
     {
@@ -87,7 +82,7 @@ public class ProductManagerTest {
         doReturn(returned).when(repository).findAll();
 
         Product[] expected = new Product[]{first};
-        Product[] actual = manager.searchBy("Lermontov");
+        Product[] actual = manager.searchBy("Memoirs");
         assertArrayEquals(expected, actual);
     }
 
@@ -102,27 +97,24 @@ public class ProductManagerTest {
         doReturn(returned).when(repository).findAll();
 
         Product[] expected = new Product[]{second};
-        Product[] actual = manager.searchBy("Pushkin");
+        Product[] actual = manager.searchBy("Memoirs");
         assertArrayEquals(expected, actual);
     }
-
     @Test
     void shouldSearchByBookAuthor() {
         Product[] returned = new Product[]{first, second, third, fourth};
         doReturn(returned).when(repository).findAll();
         Product[] expected = new Product[]{first};
-        Product[] actual = manager.searchBy("Lermontov");
+        Product[] actual = manager.searchBy("Agami");
         assertArrayEquals(expected, actual);
-
     }
     @Test
     void shouldSearchBySmartPhoneName() {
         Product[] returned = new Product[]{first, second, third, fourth};
         doReturn(returned).when(repository).findAll();
         Product[] expected = new Product[]{fourth};
-        Product[] actual = manager.searchBy("Huawei");
+        Product[] actual = manager.searchBy("Xiaomi");
         assertArrayEquals(expected, actual);
-
     }
     @Test
     void shouldSearchBySmartPhoneProducer() {
@@ -131,7 +123,5 @@ public class ProductManagerTest {
         Product[] expected = new Product[]{third, fourth};
         Product[] actual = manager.searchBy("China");
         assertArrayEquals(expected, actual);
-
     }
-
 }
