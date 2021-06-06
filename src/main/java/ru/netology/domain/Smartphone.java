@@ -3,7 +3,6 @@ package ru.netology.domain;
 public class Smartphone extends Product {
     private String producer;
 
-
     public Smartphone () {
         super();
     }
