@@ -10,7 +10,7 @@ public class ProductManager {
 
     public ProductManager(ProductRepository repository) {
         this.repository = repository;
-    }
+   }
 
 private Product[] items = new Product[0];
 
@@ -30,12 +30,9 @@ public Product[] searchBy(String text) {
         Product[] tmp = new Product[result.length + 1];
         System.arraycopy(result, 0, tmp, 0,result.length);
         tmp[tmp.length - 1] = product;
-        result = tmp;
+        result = tmp; } 
         }
-        }
-        return result;
-        }
-
+        return result;}
 public boolean matches(Product product, String search) {
         if (product instanceof Book) {
         Book book = (Book) product;
@@ -43,8 +40,7 @@ public boolean matches(Product product, String search) {
         return true;
         }
         if (book.getAuthor().equalsIgnoreCase(search)) {
-        return true;
-        }
+        return true; } 
         }
         if (product instanceof Smartphone) {
         Smartphone smartphone = (Smartphone) product;
@@ -52,10 +48,8 @@ public boolean matches(Product product, String search) {
         return true;
         }
         if (smartphone.getProducer().equalsIgnoreCase(search)) {
-        return true;
+        return true;}
         }
-        }
-        return false;
-        }
+        return false; }
 }
 

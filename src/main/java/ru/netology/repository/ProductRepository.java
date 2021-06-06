@@ -13,7 +13,6 @@ public class ProductRepository {
         tmp[lastIndex] = item;
         items = tmp;
     }
-
     public Product[] findAll() {
         return items;
     }
@@ -25,9 +24,7 @@ public class ProductRepository {
         for (Product item : items) {
             if (item.getId() != id) {
                 tmp[index] = item;
-                index++;
-            }
+                index++; }
         }
-        items = tmp;
-    }
+        items = tmp; }
 }
